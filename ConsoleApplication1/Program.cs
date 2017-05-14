@@ -121,6 +121,30 @@ namespace ConsoleApplication1
             }
         }
 
+        public void RemoveLast()
+        {
+            if (Count != 0)
+            {
+                if (Count == 1)
+                {
+                    _head = null;
+                    _tail = null;
+                }
+                else
+                {
+                    // До:    Head --> 3 --> 5 --> 7
+                    //        Tail = 7
+                    // После: Head --> 3 --> 5 --> null
+                    //        Tail = 5
+                    // Обнуляем 5.Next
+                    _tail.Previous.Next = null;
+                    _tail = _tail.Previous;
+                }
+
+                Count--;
+            }
+        }
+
         public void Clear()
         {
             _head = null;
