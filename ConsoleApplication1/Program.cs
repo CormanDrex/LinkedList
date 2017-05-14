@@ -96,6 +96,31 @@ namespace ConsoleApplication1
             Count++;
         }
 
+        public void RemoveFirst()
+        {
+            if (Count != 0)
+            {
+                // До:    Head -> 3  5
+                // После: Head -------> 5
+
+                // Head -> 3 -> null
+                // Head ------> null
+                _head = _head.Next;
+
+                Count--;
+
+                if (Count == 0)
+                {
+                    _tail = null;
+                }
+                else
+                {
+                    // 5.Previous было 3; теперь null.
+                    _head.Previous = null;
+                }
+            }
+        }
+
         public void Clear()
         {
             _head = null;
