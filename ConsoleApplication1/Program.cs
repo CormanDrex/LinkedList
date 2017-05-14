@@ -42,20 +42,7 @@ namespace ConsoleApplication1
 
         public void Add(T value)
         {
-            LinkedListNode<T> node = new LinkedListNode<T>(value);
-
-            if (_head == null)
-            {
-                _head = node;
-                _tail = node;
-            }
-            else
-            {
-                _tail.Next = node;
-                _tail = node;
-            }
-
-            Count++;
+            AddLast(value);
         }
 
         public void AddFirst(T value)
