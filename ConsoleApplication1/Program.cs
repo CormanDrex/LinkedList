@@ -202,15 +202,14 @@ namespace ConsoleApplication1
 
             while (current != null)
             {
+                // Head -> 3 -> 5 -> 7 -> null
+                // Head -> 3 ------> 7 -> null
                 if (current.Value.Equals(item))
                 {
                     // Узел в середине или в конце.
                     if (previous != null)
                     {
                         // Случай 3b.
-
-                        // До:    Head -> 3 -> 5 -> null
-                        // После: Head -> 3 ------> null
                         previous.Next = current.Next;
 
                         // Если в конце, то меняем _tail.
@@ -218,26 +217,25 @@ namespace ConsoleApplication1
                         {
                             _tail = previous;
                         }
+                        else
+                        {
+                            // До:    Head -> 3  5  7 -> null
+                            // После: Head -> 3  7 -> null
+
+                            // previous = 3
+                            // current = 5
+                            // current.Next = 7
+                            // Значит... 7.Previous = 3
+                            current.Next.Previous = previous;
+                        }
+
+                        Count--;
                     }
                     else
                     {
                         // Случай 2 или 3a.
-
-                        // До:    Head -> 3 -> 5
-                        // После: Head ------> 5
-
-                        // Head -> 3 -> null
-                        // Head ------> null
-                        _head = _head.Next;
-
-                        // Список теперь пустой?
-                        if (_head == null)
-                        {
-                            _tail = null;
-                        }
+                        RemoveFirst();
                     }
-
-                    Count--;
 
                     return true;
                 }
