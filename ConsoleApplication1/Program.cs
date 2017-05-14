@@ -40,6 +40,22 @@ namespace ConsoleApplication1
         private LinkedListNode<T> _head;
         private LinkedListNode<T> _tail;
 
+        public LinkedListNode<T> Head
+        {
+            get
+            {
+                return _head;
+            }
+        }
+
+        public LinkedListNode<T> Tail
+        {
+            get
+            {
+                return _tail;
+            }
+        }
+
         public void Add(T value)
         {
             AddLast(value);
@@ -267,18 +283,20 @@ namespace ConsoleApplication1
             LinkedListNode<T> current = _head;
             int i = 0;
 
-            Console.Write("║Node Data\t║");
+            Console.Write("Вывод связного списка:\n");
+            Console.Write("║Данные узла\t║");
             while (current != null)
             {
                 Console.Write(current.Value + "\t║");
                 current = current.Next;
             }
 
-            Console.Write("\n║Node Address\t║");
+            Console.Write("\n║Адресс узла\t║");
             while (i != Count) {
                 Console.Write(i + "\t║");
                 i++;
             }
+            Console.Write("\n");
         }
     }
 
@@ -292,13 +310,62 @@ namespace ConsoleApplication1
             Random rand = new Random(); // генератор случайных чисел
 
             // Заполняем список случайными числами
-            while (i <= 10)
+            while (i < 5)
             {
                 list.Add(rand.Next(0,100));
                 i++;
             }
 
             list.PrintList();
+
+            // Добавление нового элемента в список
+            Console.WriteLine("\nДобавление нового элемента в список методом Add() ...");
+            list.Add(22);
+            list.Add(228);
+            list.PrintList();
+
+            // Добавление нового элемента в начало списка
+            Console.WriteLine("\nДобавление нового элемента в начало списка методом AddFirst() ...");
+            list.AddFirst(102);
+            list.AddFirst(120);
+            list.PrintList();
+
+            // Удаление последнего элемента в списке
+            Console.WriteLine("\nУдаление последнего элемента в списке методом RemoveLast() ...");
+            list.RemoveLast();
+            list.PrintList();
+
+            // Удаление элемента в списке по его содержимому (Значение поля Value)
+            Console.WriteLine("\nУдаление элемента в списке по его содержимому (Значение поля Value) методом Remove() ...");
+            list.Remove(102);
+            list.PrintList();
+
+            // Проверка, содержит ли список элемент с искомым значением методом Contains()
+            Console.WriteLine("\nПроверка, содержит ли список элемент с искомым значением методом Contains() ...");
+            Console.WriteLine(list.Contains(22));
+
+            // Вывод количества элементов в списке (длинну списка) 
+            Console.WriteLine("\nВывод количества элементов в списке (длинну списка) ...");
+            Console.WriteLine("Кол-во элементов: " + list.Count);
+
+            // Проход по списку с конца и нахождение суммы всех элементов
+            LinkedListNode<int> current = list.Tail;
+            int Sum = 0;
+
+            while (current != null)
+            {
+                Sum += current.Value;
+                current = current.Previous;
+            }
+            Console.WriteLine("Сумма значений всех элементов: " + Sum);
+
+
+            // Очистить список
+            Console.WriteLine("\nОчистить список методом Clear() ...");
+            list.Clear();
+            list.PrintList();
+
+            //Задержка на экране
             Console.ReadKey();
         }
     }
