@@ -261,6 +261,24 @@ namespace ConsoleApplication1
         {
             return ((IEnumerable)this).GetEnumerator();
         }
+
+        public void PrintList()
+        {
+            LinkedListNode<T> current = _head;
+            int i = 0;
+            while (current != null)
+            {
+                Console.Write(current.Value + "\t║");
+                current = current.Next;
+            }
+
+            Console.Write("\n");
+
+            while (i != Count) {
+                Console.Write(i + "\t║");
+                i++;
+            }
+        }
     }
 
     class Program
