@@ -99,7 +99,7 @@ namespace ConsoleApplication1
 
         public bool IsReadOnly
         {
-            get { throw new System.NotImplementedException(); }
+            get { return false; }
         }
 
         public bool Remove(T item)
