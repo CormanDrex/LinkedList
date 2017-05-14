@@ -83,7 +83,12 @@ namespace ConsoleApplication1
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new System.NotImplementedException();
+            LinkedListNode<T> current = _head;
+            while (current != null)
+            {
+                array[arrayIndex++] = current.Value;
+                current = current.Next;
+            }
         }
 
         public int Count
