@@ -87,6 +87,28 @@ namespace ConsoleApplication1
             Count++;
         }
 
+        public void AddLast(T value)
+        {
+            LinkedListNode<T> node = new LinkedListNode<T>(value);
+
+            if (Count == 0)
+            {
+                _head = node;
+            }
+            else
+            {
+                _tail.Next = node;
+
+                // До:    Head -> 3  5 -> null
+                // После:Head -> 3  5  7 -> null
+                // 7.Previous = 5
+                node.Previous = _tail;
+            }
+
+            _tail = node;
+            Count++;
+        }
+
         public void Clear()
         {
             _head = null;
