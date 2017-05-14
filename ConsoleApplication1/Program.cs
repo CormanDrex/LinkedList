@@ -266,14 +266,15 @@ namespace ConsoleApplication1
         {
             LinkedListNode<T> current = _head;
             int i = 0;
+
+            Console.Write("║Node Data\t║");
             while (current != null)
             {
                 Console.Write(current.Value + "\t║");
                 current = current.Next;
             }
 
-            Console.Write("\n");
-
+            Console.Write("\n║Node Address\t║");
             while (i != Count) {
                 Console.Write(i + "\t║");
                 i++;
@@ -285,6 +286,20 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
+            // Создаём новый связный список и инициализируем переменные
+            LinkedList<int> list = new LinkedList<int>();
+            int i = 0;
+            Random rand = new Random(); // генератор случайных чисел
+
+            // Заполняем список случайными числами
+            while (i <= 10)
+            {
+                list.Add(rand.Next(0,100));
+                i++;
+            }
+
+            list.PrintList();
+            Console.ReadKey();
         }
     }
 }
