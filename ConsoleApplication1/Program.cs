@@ -58,6 +58,35 @@ namespace ConsoleApplication1
             Count++;
         }
 
+        public void AddFirst(T value)
+        {
+            LinkedListNode<T> node = new LinkedListNode<T>(value);
+
+            // Сохраняем ссылку на первый элемент.
+            LinkedListNode<T> temp = _head;
+
+            // _head указывает на новый узел.
+            _head = node;
+
+            // Вставляем список позади первого элемента.
+            _head.Next = temp;
+
+            if (Count == 0)
+            {
+                // Если список был пуст, то head and tail должны
+                // указывать на новой узел.
+                _tail = _head;
+            }
+            else
+            {
+                // До:    head -------> 5  7 -> null
+                // После: head  -> 3  5  7 -> null
+                temp.Previous = _head;
+            }
+
+            Count++;
+        }
+
         public void Clear()
         {
             _head = null;
